@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 自定义迭代器 遍历对象
+			// 创建对象
+			const user = {
+				name:'Tom',
+				score:[
+					9,
+					7,
+					6.5
+				],
+				[Symbol.iterator](){
+					let index = 0;
+					// let _this = this;
+					return {
+						next: ()=>{
+							if(index < this.score.length){
+								const res = {
+									value: this.score[index],
+									done: false
+								}
+								index++;
+								return res;
+							}else{
+								return {
+									value: undefined,
+									done: true
+								}
+							}
+						}
+					}
+				}
+			}
+			// 遍历对象的得分 
+			// user.score.forEach(function (e){
+			// 	console.log(e);
+			// });
+			// 自定义iterator方式遍历
+			for(let as of user){
+				console.log(as);
+			}
+			
+		</script>
+	</body>
+</html>

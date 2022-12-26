@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// get set
+			class User{
+				set name(name){
+					console.log('设置name属性')
+				}
+				get name2(){
+					console.log('获取name属性')
+					return 'abcd';
+				}
+			}
+			
+			let u = new User();
+			u.name='Tom';
+			// 获取值
+			u.name2;
+		</script>
+	</body>
+</html>

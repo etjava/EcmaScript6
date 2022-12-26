@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 发送ajax请求
+			// ES6 发送ajax请求
+			const pm = new Promise((resolve,reject) =>{;
+				// 创建XMLHttpRequest对象
+				const xhr = new XMLHttpRequest();
+				// 初始化
+				xhr.open('GET','https://api.apiopen.top/api/sentences');
+				// 发送请求
+				xhr.send();
+				// 绑定事件 处理响应结果
+				xhr.onreadystatechange = () =>{
+					// 判断是否响应完成
+					if(xhr.readyState===4){
+						// 判断响应的状态码 200-299之间响应成功
+						if(xhr.status>=200 && xhr.status<300){
+							// 成功 修改promise的状态
+							resolve(xhr.response);
+						}else{
+							// 执行失败 修改promise状态
+							reject(xhr.status)
+						}
+					}
+				}
+			})
+			// 调用promise对象
+			pm.then(v =>{
+				// 成功
+				console.log(v);
+			},reason=>{
+				// 失败
+				console.error(reason);
+			})
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				background: #58a;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<div id='ad2'></div>
+		<script>
+			// 1. 点击div 5s后变成红色
+			// 获取元素
+			let ad2 = document.getElementById('ad2');
+			// 绑定事件
+			ad2.addEventListener('click',function(){
+				// 定时器
+				setTimeout(() => {
+					// this 指向的是函数声明时所在的作用域 即 ad2
+					// 如果使用function(){} this指向的是window对象
+					this.style.background='red';
+				}, 2000);
+			});
+			
+			// 数组中返回偶数的元素
+			
+			// 定义数组
+			let data = [1,2,3,4,5,6];
+			// 过滤数组
+			let res = data.filter(function(item){
+				if(item%2===0){
+					return true;
+				}
+				return false;
+			});
+			console.log(res);
+			
+			// 使用箭头函数简化写法
+			let res2 = data.filter(ite => ite%2===0);
+			console.log(res2);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 案例
+			let arr = [1,1,2,2,3,3,4,5,6];
+			// 去重
+			let res = [...new Set(arr)];
+			console.log(res);// (6) [1, 2, 3, 4, 5, 6]
+			// 去两个数组的交集 共有部分
+			let arr2 = [3,3,4,4,5,5];
+			let res2 = [...new Set(arr)].filter(item =>{
+				let a2 = new Set(arr2);
+				if(a2.has(item)){
+					return true;
+				}else{
+					return false;
+				}
+			})
+			console.log(res2) // (3) [3, 4, 5]
+			// 简化写法
+			let res3 = [...new Set(arr)].filter(item => new Set(arr2).has(item));
+			console.log(res3);// (3) [3, 4, 5]
+			// 取并集 两个数组合并
+			//
+			let arr3 = [7,7,8,8,9,9];
+			let u = [...new Set([...arr,...arr3])];// 合并去重并转成数组
+			console.log(u)// (9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
+			// 差集 注意方向
+			// 例如A为主体求与B的差集 那么B中没有A中的元素则为差集
+			let d1 = [1,1,2,2,3,3,4,4,5,6,7];
+			let d2 = [4,4,5,5,6,7,8];
+			// e => !(new Set(d2).has(e)) d1中的元素不在d2中
+			let diff = [...new Set(d1)].filter(e => !(new Set(d2).has(e)));
+			console.log(diff);//(3) [1, 2, 3]
+			
+			
+		</script>
+	</body>
+</html>

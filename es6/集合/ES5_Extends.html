@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// ES5中对象的继承
+			// 创建父对象
+			function Phone(brand,price){
+				this.brand = brand;
+				this.price = price;
+			}
+			// 给父对象添加非静态方法
+			Phone.prototype.sendMsg = function(){
+				console.log('发消息的功能');
+			}
+			// 创建子类
+			function SmartPhone(brand,price,color,size){
+				// 继承父类
+				Phone.call(this,brand,price);
+				// 实现子类独有的属性
+				this.color=color;
+				this.size=size;
+			}
+			// 设置子类构造函数原型 必须要设置
+			SmartPhone.prototype = new Phone;
+			// 校正继承 可以省略
+			SmartPhone.prototype.constructor=SmartPhone;
+			// 向子类添加方法
+			SmartPhone.prototype.phone = function(){
+				console.log('存储照片的功能');
+			}
+			// 向子类添加方法
+			SmartPhone.prototype.netword = function(){
+				console.log('网上冲浪的方法');
+			}
+			// 实例化子类
+			let iphone = new SmartPhone('iphone8',999,'红色','7inch');
+			console.log(iphone);
+			// 调用父类的发送消息方法
+			iphone.sendMsg();
+		</script>
+	</body>
+</html>

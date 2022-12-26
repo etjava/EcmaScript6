@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// promise函数基本使用
+			// 实例化Promise对象
+			// resolve 成功时调用,reject 失败时调用
+			const p = new Promise(function(resolve,reject){
+				setTimeout(()=>{
+					// 模拟请求
+					let data = '获取数据成功';
+					// 获取数据成功 调用第一个参数 resolve 
+					// p 的状态会跟着改为成功状态
+					//resolve(data);
+					
+					// 模拟执行失败
+					reject('获取数据失败');
+				},1000)
+			})
+			// 通过promise对象的then方法获取到执行成功的数据
+			// then 第一个参数是执行成功的回调，第二个是执行失败的回调
+			p.then(function(value){
+				console.log(value);
+			},function(reason){
+				console.log(reason)
+			})
+		</script>
+	</body>
+</html>

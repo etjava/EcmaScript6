@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="item" style="border: 2px solid red; height: 50px; width: 50px;"></div>
+		<div class="item" style="border: 2px solid red; height: 50px; width: 50px;"></div>
+		<div class="item" style="border: 2px solid red; height: 50px; width: 50px;"></div>
+		
+		<script>
+			// 获取div元素对象
+			let items = document.getElementsByClassName("item");
+			// 遍历并绑定事件
+			// var 定义的遍历没有块级作用域的概念
+			/* for(var i = 0;i<items.length;i++){
+				items[i].onclick = function(){
+					this.style.background = 'red';
+				}
+			} */
+			for(let i = 0;i<items.length;i++){
+				items[i].onclick = function(){
+					items[i].style.background='blue';
+				}
+			}
+		</script>
+	</body>
+</html>

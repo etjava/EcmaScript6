@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// Object.is 判断两个对象是否完全相等
+			console.log(Object.is('A','a'));// false
+			console.log(Object.is(99,99)); // true
+			// NaN与任何属性比较都是false 包括自身 Object.is除外
+			console.log(Object.is(NaN,NaN)); // true
+			console.log(NaN === NaN); // false
+			console.log(NaN == NaN); // false
+			// Object.assign 对象合并 
+			// 就是指定谁覆盖谁
+			let u1 = {
+				name:'Tom',
+				age:12,
+				email:'Tom@usa.com'
+			}
+			let u2 = {
+				name:'Jerry',
+				age:12,
+				e:'jerry'
+			}
+			// console.log(Object.assign(u1,u2));// {name: "Jerry", age: 12, email: "Tom@usa.com"}
+			console.log(Object.assign(u2,u1));//{name: "Tom", age: 12, e: "jerry", email: "Tom@usa.com"}
+			// Object.setPrototypeOf 设置对象的原型 Object.getPrototypeOf 获取对象的原型
+			const user1 = {
+				name:'Tom',
+				age:12
+			}
+			const country = {
+				xxx:['USA']
+			}
+			// 设置user1对象的proto原型
+			Object.setPrototypeOf(user1,country);
+			console.log(Object.getPrototypeOf(user1));// {xxx: Array(1)}
+			console.log(user1);// {name: "Tom", age: 12}
+		</script>
+	</body>
+</html>

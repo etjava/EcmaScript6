@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// class类中的静态成员
+			// ES5 静态成员
+			function Phone(){
+				
+			}
+			// 向Phone对象添加属性 - 静态
+			Phone.name = 'IPHONE7';
+			// 添加方法- 静态
+			Phone.usePhone = function(){
+				console.log("使用手机的方法1");
+			}
+			// 获取添加的属性
+			let iphone7 = new Phone();
+			// 静态属性只能通过对象本身获取
+			console.log(iphone7.name); // undefined
+			console.log(Phone.usePhone()); 
+			// 向对象中添加普通属性 使用prototype
+			Phone.prototype.size = '7inch';
+			// 获取对象的普通属性  - 普通属性只能通过对象的实例获取
+			console.log(iphone7.size)//7inch
+			
+			// ES6 添加静态成员 使用static关键字标注
+			// 静态成员是属于对象的 不能通过实例获取
+			class Phone2{
+				static name = 'IPHONE8';
+				static usePhone(){
+					console.log('使用手机的方法2');
+				}
+			}
+			let iphone12 = new Phone2();
+			// 获取静态成员 - 静态成员只能通过对象本身调用
+			console.log(iphone12.name) // undefined
+			console.log(Phone2.name); // IPHONE8
+		</script>
+	</body>
+</html>

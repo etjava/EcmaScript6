@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 模板字符串
+			
+			// 声明字符串
+			let str = 'hello';
+			console.log(str,typeof str);
+			
+			let str2 = `Hi,`;
+			console.log(str2,typeof str2);
+			
+			// 直接添加换行符
+			let node = '<ul>'+
+						'<li>Java</li>'+
+						'<li>MYSQL</li>'+
+						'</ul>'
+			console.log(node);
+			
+			let node2 = `<ul>
+						<li>Java</li>
+						<li>MYSQL</li>
+						</ul>`;
+			console.log(node2);			
+			
+			// 变量拼接
+			let s1 = 'hello';
+			let s2 = `${s1} world`;
+			console.log(`s2=${s2}`)
+			
+		</script>
+	</body>
+</html>

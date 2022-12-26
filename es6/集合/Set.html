@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// Set 集合基本使用
+			// 定义集合 直接初始化数据
+			let s = new Set(['A','B','D','F','C','A']);
+			console.log(s);// Set(5) {"A", "B", "D", "F", "C"}
+			// 添加数据
+			s.add('E');
+			console.log(s);//Set(6) {"A", "B", "D", "F", "C", …}
+			// 删除一个元素 足以 删除元素只能通过元素本身来删除 不能使用下标
+			s.delete('A');
+			console.log(s)// Set(5) {"B", "D", "F", "C", "E"}
+			// 遍历集合
+			for(let v of s){
+				console.log(v)
+			}
+			// 清空集合
+			s.clear();
+			console.log(s)// Set(0) {}
+			
+			
+			
+		</script>
+	</body>
+</html>

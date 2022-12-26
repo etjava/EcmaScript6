@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// symbol 创建方式1
+			let s1 = Symbol();
+			console.log(s1,typeof s1);// Symbol() "symbol"
+			// symbol 创建方式2
+			let s2 = Symbol('Jerry');
+			let s3 = Symbol('Jerry');
+			console.log(s2 === s3);// false
+			// symbol 创建方式3
+			let s4 = Symbol.for('Tom');
+			let s5 = Symbol.for('Tom');
+			console.log(s4 === s5);// true
+			
+			// symbol 不能参与任何运算
+			// let s6 = s2+s3;
+			// let s7 = s2+100;
+			// let s8 = s1>100;
+			// let s9 = 'aaa'+s5;
+			
+			// 向对象中添加方法 up down
+			const game = {
+				up:'上升',
+				down:'下降'
+			}
+			// 声明一个对象 包含up down两个属性 以便方便的添加到game对象中
+			const m1 = {
+				up: Symbol(),
+				down: Symbol()
+			}
+			// 添加到game对象中
+			game[m1.up] = function() {
+				console.log('m1 的up');
+			}
+			game[m1.down] = function() {
+				console.log('m1 的down');
+			}
+			// 调用
+			console.log(game);
+			
+			// 给对象添加唯一方法
+			let ss = {
+				name:'Java',
+				[Symbol('author')]:function (){
+					console.log("java 作者");
+				},
+				[Symbol('version')]:function (){
+					console.log("java 版本");
+				}
+			}
+			console.log(ss);
+			
+			
+		</script>
+	</body>
+</html>

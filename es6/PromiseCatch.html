@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// promise catch基本使用
+			const pm = new Promise((resolve,reject)=>{
+				setTimeout(()=>{
+					// 设置pm对象的状态为失败并设置失败的值
+					reject("出错了");
+				},1000);
+			});
+			
+			// then方式回调
+			pm.then(value=>{},(reason)=>{
+				console.log(reason);
+			});
+			
+			pm.then(value=>{
+				
+			}).catch(reason=>{
+				console.warn(reason);
+			})
+			
+			// 单独使用catch
+			pm.catch(eerr=>{
+				console.error(eerr);
+			})
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 引入node 的 fs模块
+			const fs = require('fs');
+			// 创建promise实例
+			// 参数解释resolve 业务处理成功调用的参数
+			// reject 业务处理失败时调用的参数
+			const pm = new Promise((resolve,reject)=>{
+				fs.readFile('./resources/a.md',(err,data)=>{
+					// 读取失败时 需要改变promise对象的状态
+					if(err) reject(err);
+					// 读取成功返回数据
+					reject(data);
+				})
+			});
+			
+			pm.then(value=>{
+				console.log(value.toString())
+			},
+			reason=>{
+				console.log("读取失败"+reason)
+			})
+			
+		</script>
+	</body>
+</html>

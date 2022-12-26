@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="module">
+			// 通用引入模块语法
+			// 分别暴漏引入模块
+			import * as A1 from './js/m1.js'
+			// 统一暴漏引入模块
+			import * as A2 from './js/m2.js'
+			// 默认暴漏引入模块
+			import * as A3 from './js/m3.js'
+			console.log(A3.default.name)
+			
+			// 解构赋值方式引入模块语法
+			// 分别暴漏引入模块
+			import {name,fn} from './js/m1.js'
+			console.log(name,fn);
+			// 统一暴漏引入模块 如果多个引入出现重名 可以使用as+别名方式区分
+			import {name2,fn2} from './js/m2.js'
+			console.log(name2)
+			// 默认暴漏引入模块 default是一个对象 必须使用别名
+			import {default as n} from './js/m3.js'
+			console.log(n)
+			
+			// 简便形式 只针对默认暴漏
+			import M1 from './js/m3.js'
+			console.log(M1.name);
+		</script>
+	</body>
+</html>

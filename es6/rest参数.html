@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// ES5 获取实参 
+			// 注意 arguments是一个对象
+			function fun(){
+				console.log(arguments);
+			}
+			fun(1,2,3)
+			
+			// 使用rest参数获取实参
+			// 注意 rest参数必须放到形参最后
+			function fn(a,b,...eee22){
+				console.log(a);
+				console.log(b);
+				console.log(eee22);
+			}
+			fn('a','b','c','d');
+			
+		</script>
+	</body>
+</html>

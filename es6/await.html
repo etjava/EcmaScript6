@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	<script>
+		// await表达式
+		// await 右边是promise对象
+		// await必须放在async函数中，但async函数中可以没有await表达式
+		// await只返回promise成功的值 如果是失败的则需要try catch捕获处理
+		
+		const pm = new Promise((resolve,reject)=>{
+			// resolve('成功返回');
+			reject('失败数据');
+		})
+		
+		async function fn(){
+			try{
+				let res = await pm;
+				console.log(res);
+			}catch(e){
+				console.log(e)
+			}
+		}
+		
+		fn();
+	</script>
+	</body>
+</html>

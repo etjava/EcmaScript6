@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// Symbol.hasInstance
+			class User{// 构造器
+				static [Symbol.hasInstance](params){ // 构造器可以传递参数
+					console.log("自定义对象构造器");
+					console.log(params);
+					return true;
+				}
+			}
+			
+			let dd = [2,3,4];
+			console.log(dd instanceof User)
+			
+			let a1 = [1,2,3];
+			let a2 = [4,5];
+			let a3 = a1.concat(a2);
+			console.log(a3)
+			a2[Symbol.isConcatSpreadable] = false;// a2数组不展开
+			let a4 = a1.concat(a2);
+			console.log(a4)
+			// 类似使用扩展运算符 一个进行展开 一个使用普通方式
+			let d1 = [1,2,3];
+			let d2 = [4,5];
+			let d3 = [...d1,d2];
+			console.log(d3);
+		</script>
+	</body>
+</html>

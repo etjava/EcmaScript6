@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// Map集合使用
+			// 定义map
+			const map = new Map();
+			// 添加元素
+			map.set('name','Tom');
+			map.set('age',12);
+			let score = {
+				math:99,
+				Physics:99
+			}
+			map.set('score',score);
+			map.set('test',function(){
+				console.log('测试元素')
+			})
+			//遍历map
+			for(let v of map){
+				console.log(v);
+			}
+			// 删除单个元素
+			map.delete('test');
+			console.log(map);
+			// 获取map大小
+			let count = map.size;
+			console.log(count)
+			// 清空map
+			map.clear()
+			console.log(map)
+		</script>
+	</body>
+</html>

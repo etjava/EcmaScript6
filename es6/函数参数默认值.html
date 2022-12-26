@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 1. 给函数参数赋初始值
+			// 注意 箭头函数不能赋初始值
+			// const add (a,b,c=10) => a+b+c;
+			// 默认值一般放到参数列表的最后
+			function add(a,b,c=10){
+				return a+b+c;
+			}
+			console.log(add(1,2));
+			
+			// 2. 与解构赋值结合
+			connection({
+				//host:'localhost',
+				port:3306,
+				username:'root',
+				password:'root'
+			});
+			function connection({host='192.168.199.109',port,username,password}){
+				console.log(host);
+				console.log(port);
+				console.log(username);
+				console.log(password);
+			}
+		</script>
+	</body>
+</html>

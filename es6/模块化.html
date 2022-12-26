@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="module">
+			import * as A1 from './js/m1.js'
+			console.log(A1.name)
+			
+			// 测试统一暴漏
+			import * as A2 from './js/m2.js'
+			console.log(A2)
+			
+			// 测试默认暴漏
+			import A3 from './js/m3.js'
+			console.log(A3);
+			// 调用默认暴漏模块的内容时需要添加default属性
+			A3.show();
+			console.log(A3.name)
+			
+		</script>
+	</body>
+</html>

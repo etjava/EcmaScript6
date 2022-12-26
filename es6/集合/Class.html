@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// class的基本使用
+			// ES5 创建自定义对象
+			function Phone(brand,price){
+				this.brand = brand;
+				this.price = price;
+			}
+			// 向对象中添加方法
+			Phone.prototype.usePhone = function(){
+				console.log('使用手机的方法')
+			}
+			// 实例化自定义对象
+			let iphone = new Phone('IPHONE16',999999.99);
+			// 调用自定义对象中的userPhone方法
+			iphone.usePhone();
+			// 获取整个phone的对象
+			console.log(iphone);
+			
+			// ES6 使用class自定义对象
+			// 定义对象
+			class Phone2{
+				// 构造方法 注意 构造方法只能有一个 无论是有参还是无参
+				constructor(brand,price){
+					this.brand=brand;
+					this.price=price;
+				}
+				// 添加方法
+				usePhone(){
+					console.log('使用手机的方法');
+				}
+			}
+			// 调用Phone2对象中的方法
+			let iphone8 = new Phone2('IPHONE8',9999.88);
+			iphone8.usePhone();
+			console.log(iphone8)
+			
+		</script>
+	</body>
+</html>

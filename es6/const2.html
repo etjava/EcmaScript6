@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// ES6 允许按照一定模式从数组或对象中提取值 对变量进行赋值
+			// 这种方式被成为解构赋值
+			
+			// 数组的解构赋值
+			const BOOKS = ["Java","Python","MYSQL"];
+			let[k1,k2,k3] = BOOKS;
+			// console.log(k1);
+			// console.log(k2);
+			// console.log(k3);
+			
+			// 对象的解构赋值
+			const USER = {
+				name:"Tom",
+				age:12,
+				func:function(){
+					console.log("Tom method...")
+				}
+			};
+			// 提前对象中的值时 名称必须要对应
+			// let {name,age,func} = USER;
+			// console.log(name);
+			// func();
+			// 单独提前一个常量中的值 注意变量的定义不能重名
+			let {name} = USER;
+			console.log(name);
+			// 提前对象中的方法
+			let {func} = USER;
+			console.log(func);
+			func();
+			
+		</script>
+	</body>
+</html>

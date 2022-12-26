@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<script>
+			// 扩展运算符 ... 可以将数组转成逗号隔开的参数列表
+			// 声明一个数组
+			let arr = ['Java','MySQL','DB2'];
+			// 声明一个函数 
+			function fn(){
+				console.log(arguments);
+			}
+			fn(...arr);
+			
+			// 扩展运算符应用
+			
+			// 数组合并
+			let u1 = ['Tom','Jerry'];
+			let u2 = ['Andy','Judy'];
+			// 数组合并 concat方式
+			let u = u1.concat(u2);
+			console.log(u);
+			// 数组合并 扩展运算符方式
+			let res = [...u1,...u2];
+			console.log(res);
+			
+			// 数组的克隆
+			let arr1 = [1,2,3];
+			let arr2 = [...arr1];
+			console.log(arr2);
+			// 将伪数组转成真正的数组 1
+			let a1 = 1, a2=2,a3=3;
+			let arr3 = [a1,a2,a3];
+			console.log(arr3);
+			// 将伪数组转成真正的数组 2
+			// 将div转成数组
+			let divs = document.querySelectorAll('div');
+			let divArr = [...divs];
+			console.log(divArr);
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// Promise对象的then方法详解
+			// then方法的返回结果还是一个promise对象，该对象的状态是由调用函数执行结果决定的
+			// 如果回调函数中返回的执行结果是非promise类型的属性 例如 在then方法中直接return 123 
+			// 则该对象状态为成功
+			// 如果回调函数返回的执行结果是promise类型的属性 则内部的返回状态决定了外部promise对象的状态
+			// 也就是说虽然外部执行成功了 但内部如果返回失败 那么外部的promise执行状态仍然是失败的
+			// 另外 promise的then方法是可以连调的 就是then(xx).then(xx).then(xx)
+			// 案例
+			const pm = new Promise((resolve,reject)=>{
+				setTimeout(()=>{
+					// 模拟执行成功
+					resolve('读取到数据');
+				},1000)
+			});
+			const res = pm.then(value=>{
+				console.log(value);
+				// 非promise对象
+				// return 123;
+				// 是promise对象
+				return new Promise((resolve,reject)=>{
+					return reject('读取失败');// rejected
+				})
+			},reason=>{
+				console.error(reason)// rejected
+			});
+			console.log(res);// fulfilled
+			
+			// promise支持链式调用
+			// promise回调时可以只有一个成功的回调函数 也可以两个都有
+			pm.then(v=>{
+				
+			}).then(v=>{
+				
+			}).then(v=>{
+				
+			},e=>{
+				
+			})
+			
+		</script>
+	</body>
+</html>

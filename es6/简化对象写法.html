@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 简化对象的写法
+			
+			// 定义变量
+			let name = 'Jerry';
+			let change = function(){
+				console.log('定义方法')
+			}
+			// 对象赋值
+			const user =  {
+				name:name,
+				change:change()
+			}
+			// 对象赋值简略写法
+			const user2 =  {
+				name,
+				change
+			}
+			// 调用对象中的方法
+			user2.change();
+			// 对象中直接定义方法
+			const user3 = {
+				name,
+				// improve222:function(){
+				// 	// 处理业务
+				// }
+				// 简写
+				improve222(xxx){
+					// 处理逻辑
+					console.log(xxx);
+				}
+			}
+			user3.improve222(1234);
+		</script>
+	</body>
+</html>

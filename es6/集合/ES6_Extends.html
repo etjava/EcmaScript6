@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// ES6中对象的继承
+			class Phone{
+				// 构造方法
+				constructor(brand,price){
+					this.brand = brand;
+					this.price = price;
+				}
+				// 成员方法
+				usePhoto(){
+					console.log('使用相册的方法');
+				}
+				sendMsg(){
+					console.log('发送消息的方法');
+				}
+			}
+			// 创建子类并继承父类 使用extends关键字
+			class SmartPhone extends Phone{
+				// 构造方法
+				constructor(brand,price,color,size){
+					// 调用父类构造方法 相当于ES5 Phone.call(this,brand,price,coloe,size)
+					super(brand,price);
+					// 子类独有
+					this.color = color;
+					this.size = size;
+				}
+				// 子类的成员方法
+				netWork(){
+					console.log('网上冲浪');
+				}
+				sendMsg(){
+					console.log('子类中的发送消息方法');
+				}
+			}
+			// 实例化子类
+			let iphone = new SmartPhone('iphone7',999,'RED',8);
+			console.log(iphone)
+			// 调用子类本身的方法
+			iphone.netWork();
+			// 调用父类方法
+			iphone.usePhoto();
+			iphone.sendMsg();
+			
+			
+		</script>
+	</body>
+</html>

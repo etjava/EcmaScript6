@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			// 定义数组
+			let arr = ['Java','DB2','MySQL'];
+			// 遍历对象 for in  返回数组下标索引值
+			for(let v in arr){ 
+				console.log(v);
+			}
+			
+			// 遍历对象 for of 返回数组中的内容
+			for(let v of arr){
+				console.log(v);
+			}
+			
+			// 获取对象中的iterator方法
+			let car = arr[Symbol.iterator]();
+			// 调用对象的next方法
+			console.log(car.next());
+			console.log(car.next());
+			console.log(car.next());
+			console.log(car.next());
+			console.log(car.next());
+		</script>
+	</body>
+</html>
