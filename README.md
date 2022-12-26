@@ -98,7 +98,8 @@ DATA.push(6);
 console.log(DATA)
 ```
 ![image](https://user-images.githubusercontent.com/47961027/209531116-73555ac2-5c4a-4292-8712-5d80b86cbda1.png)
-常量定义的数组及对象中元素可以被修改但仅限于修改数组或对象的中的元素 如果是修改常量的值是不允许的
+### 常量定义的数组及对象中元素可以被修改但仅限于修改数组或对象的中的元素 如果修改常量的值是不允许的
+
 ![image](https://user-images.githubusercontent.com/47961027/209531261-13d3f623-7446-4ab1-b03e-1fbda012599f.png)
 ## 常量的解构
 ES6 允许按照一定模式从数组或对象中提取值 然后对变量进行赋值 这种模式就是常量的解构
@@ -211,14 +212,162 @@ user3.improve222(1234);
 ## 箭头函数
 ES6中新增箭头(=>)来定义函数
 ### 箭头函数的声明
+```
+// ES5声明函数
+function fn(){
+	// 业务代码
+}
+// ES6可以使用箭头声明函数
+let fn=(a,b)=>{
+	return a+b;
+}
+```
+调用箭头函数
+```
+// 调用函数
+let res = fn(1,2);
+console.log(res)
+```
+![image](https://user-images.githubusercontent.com/47961027/209533351-195c2baa-9fd7-4caf-804c-caf0b6b4e96f.png)
+### 箭头函数的特性
+#### 1. this是静态的
+ES6中this始终是指向函数声明时所在的作用域下的this的值
+```
+// 声明函数
+function getName(){
+	console.log(this.name);
+}
+// 作用域是当前window对象(全局)
+let getName2 = () =>{
+	console.log(this.name);
+}
+// 设置window对象的name属性
+window.name = 'hello';
+// 定义一个常量 改变name值
+const school = {
+	name:'world'
+}
+// 普通方式调用
+getName(); // hello
+getName2(); // hello
+// call方法调用 call方法可以改变this指向
+getName.call(school);
+getName2.call(school);
+```
+![image](https://user-images.githubusercontent.com/47961027/209533466-8340b4df-8aa1-44f3-b24d-493e52649732.png)
+#### 2. 箭头函数不能作为构造器实例化对象
+```
+// ES5 创建构造函数实例化对象
+var Person = function(name,age){
+	this.name = name;
+	this.age = age;
+}
+var aa = new Person('Tom',12);
+console.log(aa)
+// ES6 箭头函数不能作为构造器实例化对象
+const Person2 = (name,age) => {
+	this.name = name;
+	this.age = age;
+}
+let p = new Person2('Jerry',13);
+console.log(p);
+```
+![image](https://user-images.githubusercontent.com/47961027/209533591-2da8b54a-04ff-47f3-b2ed-3b0bf967c4f2.png)
 
-
-
-
-
-
-
-
+#### 3. 箭头函数不能使用arguments变量
+ES5中可以使用arguments特殊变量来保存实参 但ES6的箭头函数中不能使用
+```
+function f1(){
+	console.log(arguments);
+}
+f1(1,2,3);
+// 箭头函数不可以使用arguments变量
+let f2 = () =>{
+	console.log(arguments);
+}
+f2(2,3,4);
+```
+![image](https://user-images.githubusercontent.com/47961027/209533797-d52dcca4-fe9c-4e03-ab6e-07c4f1f483c6.png)
+### 箭头函数的简写
+省略小括号
+当形参有且只有一个时 可以省略小括号
+```
+// 省略小括号
+let add = n =>{
+	return n+n;
+}
+console.log(add(7));
+```
+省略花括号
+当方法体中有且仅有一条语句时可以省略花括号
+但如果有return语句时 那么return也必须省略，语句的执行结果就是函数的返回值
+```
+// 省略花括号
+let pow = n => n*n;
+console.log(pow(7));
+```
+![image](https://user-images.githubusercontent.com/47961027/209533968-2d748664-87b0-4712-91b4-18bffe7a822d.png)
+### 箭头函数练习 点击div 5秒后变成蓝色
+需要注意this的使用 
+箭头函数时(ES6) this始终指向的是函数在声明时的作用域
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+      div{
+            width: 200px;
+            height: 200px;
+            background: #58a;
+      }
+</style>
+<title></title>
+</head>
+<body>
+<div id='ad2'></div>
+<script>
+      // 1. 点击div 5s后变成红色
+      // 获取元素
+      let ad2 = document.getElementById('ad2');
+      // 绑定事件
+      ad2.addEventListener('click',function(){
+            // 定时器
+            setTimeout(() => {
+                  // this 指向的是函数声明时所在的作用域 即 ad2
+                  // 如果使用function(){} this指向的是window对象
+                  this.style.background='red';
+            }, 2000);
+      });
+</script>
+</body>
+</html>
+```
+### 箭头函数练习 数组中返回偶数元素
+```
+// 定义数组
+let data = [1,2,3,4,5,6];
+// 过滤数组
+let res = data.filter(function(item){
+	if(item%2===0){
+		return true;
+	}
+	return false;
+});
+console.log(res);
+			
+// 使用箭头函数简化写法
+let res2 = data.filter(ite => ite%2===0);
+console.log(res2);
+```
+![image](https://user-images.githubusercontent.com/47961027/209534347-c92d9538-a608-4813-9eef-dd138c71833f.png)
+### 箭头函数总结
+箭头函数可以简化代码逻辑
+当有且仅有一个形参时可以省略小括号，当有且仅有一条执行语句时可以省略大括号
+箭头函数适合与this无关的回调，例如定时器 数组的方法回调
+箭头函数不适合与this有关的回调 例如对象的方法，事件的回调等
+<font color=red>箭头函数中的this永远指向声明时的作用域的</font>
+## 函数参数赋默认值
 
 
 
