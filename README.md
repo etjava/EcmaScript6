@@ -1770,7 +1770,193 @@ npx babel js -d dist/js --presets=babel-preset-env
 npx browserify dist/js/app.js -o /main.js
 ![image](https://user-images.githubusercontent.com/47961027/209546044-3e00262a-8a9f-4d2a-8a63-077c1e5de3fe.png)
 ![image](https://user-images.githubusercontent.com/47961027/209546052-c2399fcd-868b-496b-84ea-96d371ac3c19.png)
+# ES7
+## includes 
+判断数组中是否包含元素 返回boolean值
+与indexOf类似 但indexOf包含返回元素下标 不包含返回-1
+### 幂次方运算符 **
+与Math.pow(a,b)结果是相同的 阅读理解更为直观
+```
+// 判断数组是否包含某个元素
+// includes 返回boolean值  indexOf 返回的是下标 不存在返回-1
+const data = [1,2,3];
+console.log(data.indexOf(5));// -1
+console.log(data.includes(5));// false
 
+// 运算符 ** 求幂次方数
+// 计算2的10次方
+console.log(2 ** 10);// 1024
+// 相当于使用Math.pow(2,10)
+console.log(Math.pow(2,10));// 1024
+```
+![image](https://user-images.githubusercontent.com/47961027/209546718-5bd46de4-dd76-4941-9e27-ab1a5bace258.png)
+# ES8新特性
+ES8中新增了async和await两种语法，可以让异步代码更像同步代码
+async和await都是针对异步编程
+## async函数
+async返回值是promise对象 其结果由async函数执行的返回值决定的
+定义async函数的语法 就是在普通函数前边加上async关键字
+
+```
+// 定义async函数
+async function fn(){
+      // async函数最终返回promise对象
+      // 返回一个非promise对象的值 则函数最终返回的是promise的成功状态
+      // return 123;// fulfilled
+      
+      // 返回的是失败的promise对象 则函数最终返回的是失败状态的promise对象
+      // return new Promise((a,b)=>{
+      //    // b('失败的数据'); // rejected
+      //    a('成功的数据'); // fulfilled
+      // })
+      
+      // 抛出异常 则是失败状态的promise对象
+      throw new Error('errorInfo');// rejected
+}
+
+let a = fn();
+console.log(a);
+
+// async返回的是promise对象 就可以通过then进行回调
+a.then(value=>{
+      console.log(value);
+},reason=>{
+      console.log(reason);// errorInfo
+})
+```
+### await表达式
+await表达式必须写在async函数中
+await右侧表达式通常是一个promise对象
+await 返回的是promise成功的值 如果失败了就会抛出异常 需要通过try catch捕捉处理
+```
+// await表达式
+// await 右边是promise对象
+// await必须放在async函数中，但async函数中可以没有await表达式
+// await只返回promise成功的值 如果是失败的则需要try catch捕获处理
+
+const pm = new Promise((resolve,reject)=>{
+      // resolve('成功返回');
+      reject('失败数据');
+})
+
+async function fn(){
+      try{
+            let res = await pm;
+            console.log(res);
+      }catch(e){
+            console.log(e)
+      }
+}
+
+fn();
+```
+![image](https://user-images.githubusercontent.com/47961027/209546803-44cc9dc6-464e-47c6-a98d-764f02735944.png)
+## 综合案例 读取文件
+```
+// async与await结合使用 读取文件内容
+// 引入fs模块
+const fs = require('fs')
+
+// 定义读取文件函数
+function readM1(){
+	return new Promise((resolve,reject)=>{
+		fs.readFile('./resources/a.md',(err,data)=>{
+			// 如果读取失败
+			if(err) reject(err);
+			// 读取成功返回数据
+			resolve(data);
+		})
+	})
+}
+function readM2(){
+	return new Promise((resolve,reject)=>{
+		fs.readFile('./resources/b.md',(err,data)=>{
+			// 如果读取失败
+			if(err) reject(err);
+			// 读取成功返回数据
+			resolve(data);
+		})
+	})
+}
+
+// 定义async函数
+async function readFile(){
+	let res = await readM1();
+	let res2 = await readM2();
+	console.log(res.toString());
+	console.log(res2.toString());
+}
+
+readFile();
+```
+![image](https://user-images.githubusercontent.com/47961027/209546866-cd5343a5-396e-4dd5-ac34-fff79739d7dd.png)
+## 综合案例 发送ajax请求
+```
+function list(url){
+      // 需要返回promise对象
+      return new Promise((resolve,reject)=>{
+            // 创建ajax请求
+            const x = new XMLHttpRequest();
+            x.open('GET',url);
+            x.send();
+            x.onreadystatechange = function(){
+                  if(x.readyState===4){
+                        if(x.status>=200 && x.status<300){
+                              resolve(x.response);
+                        }else{
+                              reject(x.status);
+                        }
+                  }
+            }
+      });
+}
+// promise的then方法测试
+list("https://api.apiopen.top/api/sentences").then(value=>{
+      console.log(value)
+},reason=>{
+      console.warn(reason);
+})
+
+// async函数测试
+async function main(){
+      try{
+            for(let i = 0;i<10;i++){
+                  let res = await list("https://api.apiopen.top/api/sentences");
+                  console.log(res);
+            }
+      }catch(e){
+            console.warn(e);
+      }
+}
+main();
+```
+![image](https://user-images.githubusercontent.com/47961027/209546920-376ba25a-761d-4b82-94fe-0cf305d112ba.png)
+## Object扩展方法
+ES8中对Object对象增加三个扩展方法
+keys 获取对象所有的key
+values 获取对象所有的value
+entries 获取键值对集合 此属性可以用来将对象转换成map
+```
+// Object 扩展属性
+const user = {
+      name:'Tom',
+      age:12,
+      score:[9,9,8]
+}
+
+// 获取对象所有的键
+console.log(Object.keys(user))
+// 获取对象所有的值
+console.log(Object.keys(user))
+// 获取对象键值对
+console.log(Object.entries(user))
+// 通过获取对象键值对将对象转成map
+const map = new Map(Object.entries(user));
+console.log(map.get('score'))
+// 获取对象的属性的描述对象 可以通过对象属性描述对象进行对对象的深度克隆等操作
+console.log(Object.getOwnPropertyDescriptors(user))
+```
+![image](https://user-images.githubusercontent.com/47961027/209546972-d8691fa8-6a37-4bec-8c98-a855617430d8.png)
 
 
 
